@@ -1,7 +1,4 @@
 {
-  "rewrites": [
-    { "source": "/api/create-checkout-session", "destination": "/api/create-checkout-session" },
-    { "source": "/api/verify-payment", "destination": "/api/verify-payment" },
-    { "source": "/api/config", "destination": "/api/config" }
-  ]
+  "buildCommand": "",
+  "outputDirectory": "."
 }
