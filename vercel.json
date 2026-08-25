@@ -1,15 +1,7 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "server.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "server.js"
-    }
+  "rewrites": [
+    { "source": "/api/create-checkout-session", "destination": "/api/create-checkout-session" },
+    { "source": "/api/verify-payment", "destination": "/api/verify-payment" },
+    { "source": "/api/config", "destination": "/api/config" }
   ]
 }
