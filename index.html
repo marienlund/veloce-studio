@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veloce Studio — AI Hjemmeside Generator</title>
+  <meta name="description" content="Skab professionelle, smukke hjemmesider på sekunder. Vælg logo, farver, skrifttyper, knapper, billeder og layout – tryk generér og se resultatet med det samme.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome / Lucide Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- JSZip CDN for 1-click ZIP generation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="studio-body">
+
+  <!-- MAIN STUDIO LAYOUT -->
+  <div class="studio-container">
+    
+    <!-- TOP TOOLBAR -->
+    <header class="studio-header">
+      <div class="brand">
+        <div class="brand-logo-icon">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </div>
+        <div class="brand-text">
+          <h1>Veloce Studio <span class="badge">AI PRO</span></h1>
+          <p>Instant Website Creator</p>
+        </div>
+      </div>
+
+      <!-- VIEWPORT SWITCHER -->
+      <div class="viewport-controls">
+        <button class="viewport-btn active" data-viewport="desktop" title="Computervisning (100%)">
+          <i class="fa-solid fa-desktop"></i>
+          <span>Skrivebord</span>
+        </button>
+        <button class="viewport-btn" data-viewport="tablet" title="Tabletvisning (768px)">
+          <i class="fa-solid fa-tablet-screen-button"></i>
+          <span>Tablet</span>
+        </button>
+        <button class="viewport-btn" data-viewport="mobile" title="Mobilvisning (375px)">
+          <i class="fa-solid fa-mobile-screen-button"></i>
+          <span>Mobil</span>
+        </button>
+      </div>
+
+      <!-- TOP ACTIONS -->
+      <div class="header-actions">
+        <button id="btnOpenGuideModal" class="btn-guide-red" title="Se hvordan du bruger siden (Brugervejledning)">
+          <i class="fa-solid fa-circle-question"></i>
+          <span>Vejledning</span>
+        </button>
+        <button id="btnOpenTemplateModal" class="btn-template-highlight" title="Vælg Hjemmeside Skabelon (15 Visuelle Layouts)">
+          <i class="fa-solid fa-table-cells-large"></i>
+          <span>Skabeloner</span>
+        </button>
+        <button id="btnSurprise" class="btn-secondary" title="Generér tilfældigt AI design-forslag">
+          <i class="fa-solid fa-dice"></i>
+          <span>Overrask</span>
+        </button>
+        <button id="btnGenerate" class="btn-sparkle">
+          <i class="fa-solid fa-bolt-lightning"></i>
+          <span>Generér</span>
+        </button>
+        <button id="btnCheckout" class="btn-purchase">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span>Køb & Download (299 kr.)</span>
+        </button>
+        <button id="btnFullscreen" class="btn-icon" title="Fuldskærm visning">
+          <i class="fa-solid fa-expand"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- STUDIO WORKSPACE: SIDEBAR + PREVIEW CANVAS -->
+    <div class="studio-workspace">
+
+      <!-- LEFT SIDEBAR: DESIGN CONTROLS -->
+      <aside class="studio-sidebar">
+        <div class="sidebar-header">
+          <h2><i class="fa-solid fa-sliders"></i> Design Indstillinger</h2>
+          <span class="subtext">Tilpas din hjemmeside i realtid</span>
+        </div>
+
+        <div class="control-groups">
+
+          <!-- GROUP 0: AI TEKST-GENERERING & BRANCHE-SKRIVER -->
+          <div class="control-card highlight-card">
+            <div class="card-header">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <h3>AI Tekst-Generering & Branche-Skriver</h3>
+            </div>
+            <div class="input-field">
+              <label for="selectAiIndustry">Vælg Din Branche</label>
+              <select id="selectAiIndustry">
+                <option value="murer">🛠️ Murer & Entreprenør (Fliser, Nedrivning, Renovering)</option>
+                <option value="tomrer">🪵 Tømrer & Snedker (Tag, Vinduer, Træterrasser)</option>
+                <option value="gartner">🌿 Anlægsgartner & Brolægning (Belægning, Græs, Hæk)</option>
+                <option value="laege">👨‍⚕️ Læge & Lægepraksis (Tidsbestilling, Recept, Attester)</option>
+                <option value="fysioterapi">🦴 Fysioterapi & Genoptræning (Sportsskader, Ryg & Nedsat Funktion)</option>
+                <option value="fysiurgisk">💆 Massør & Kropsterapi (Fysiurgisk Massage, Stress & Bindevæv)</option>
+                <option value="psykolog">🧠 Psykolog & Samtaleterapi (Stress, Angst, Parterapi & Trivsel)</option>
+                <option value="kiropraktor">🩻 Kiropraktor & Osteopati (Ryg, Led, Diskus & Hovedpine)</option>
+                <option value="optiker">👁️ Optiker & Øjenklinik (Synsprøve, Briller & Kontaktlinser)</option>
+                <option value="fodterapi">🦶 Fodterapeut & Fodpleje (Indlæg, Nedgroede Negle, Fodbehandling)</option>
+                <option value="frisor">✂️ Frisør & Skønhedssalon (Hår, Barber, Styling)</option>
+                <option value="tandlaege">🦷 Tandlæge & Sundhedsklinik (Tænder, Behandling)</option>
+                <option value="restaurant">🍕 Restaurant & Café (Bordbestilling, Menu, Takeaway)</option>
+                <option value="tech">🚀 IT, SaaS & Tech Startup (App, Software, Cloud)</option>
+                <option value="bogholder">📊 Bogholder & Rådgivning (Regnskab, Skat, Rådgivning)</option>
+                <option value="fotograf">📸 Fotograf & Video (Portræt, Bryllup, Erhverv)</option>
+                <option value="auto">🚗 Autoværksted & Mekaniker (Service, Dæk, Syn)</option>
+              </select>
+            </div>
+            <div class="input-field">
+              <label for="inputCustomKeyword">Valgfrit Søgeord / By (f.eks. "Aalborg")</label>
+              <input type="text" id="inputCustomKeyword" placeholder="F.eks. København, Nordsjælland eller Specialopgaver">
+            </div>
+            <button id="btnRunAiCopywriter" class="btn-sparkle" style="width:100%; margin-top:10px;">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>✨ AI SKRIV MIN HJEMMESIDE NU</span>
+            </button>
+          </div>
+
+          <!-- GROUP 1: HJEMMESIDE LAYOUT STIL -->
+          <div class="control-card highlight-card">
+            <div class="card-header">
+              <i class="fa-solid fa-cubes-stacked"></i>
+              <h3>Hjemmeside Layout Stil</h3>
+            </div>
+            <div class="input-field">
+              <label for="selectLayoutArchetype">Vælg Layout Arketype</label>
+              <select id="selectLayoutArchetype">
+                <option value="split-classic">1. Classic Split Layout</option>
+                <option value="hero-banner">2. Hero Banner & Executive Layout</option>
+                <option value="hero-stacked">3. Stacked Dual Layout</option>
+                <option value="grid-3-cards">4. 3 Grid Cards Layout</option>
+                <option value="horizontal-cards">5. Horizontal Rows Layout</option>
+                <option value="bento-grid">6. Bento 2x2 Grid Layout</option>
+                <option value="hero-fullwidth">7. Wide Impact Layout</option>
+                <option value="asymmetric-stacked">8. Asymmetric Stack Layout</option>
+                <option value="split-5050">9. 50/50 Split Layout</option>
+                <option value="multi-row-cards">10. Multi-Row Cards Layout</option>
+                <option value="stacked-banners">11. Stacked Banners Layout</option>
+                <option value="hero-3-columns">12. Hero + 3 Columns Layout</option>
+                <option value="top-cards-3">13. Top 3 Cards Layout</option>
+                <option value="sidebar-layout">14. Sidebar Split Layout</option>
+                <option value="media-left-list">15. Media Left List Layout</option>
+              </select>
+            </div>
+          </div>
+          
+          
+          <!-- GROUP 1B: VISUELT SKABELON-VALG (15 SKABELONER) -->
+          <div class="control-card highlight-card">
+            <div class="card-header">
+              <i class="fa-solid fa-table-cells-large"></i>
+              <h3>Vælg Skabelon (15 Visuelle Layouts)</h3>
+            </div>
+            <p class="subtext-info" style="margin-bottom:10px;"><i class="fa-solid fa-layer-group"></i> Klik på en trådskitse for at skifte layout i realtid:</p>
+            <div class="template-picker-grid" id="templatePickerGrid"></div>
+            <button id="btnSidebarMoreTemplates" class="btn-template-highlight" style="width:100%; margin-top:12px;" type="button">
+              <i class="fa-solid fa-expand"></i> <span>Åbn Alle 15 Skabeloner (Stor Visning)</span>
+            </button>
+          </div>
+
+          <!-- GROUP 2: MULTI-BILLEDER & MEDIA UPLOAD -->
+          <div class="control-card highlight-card-blue">
+            <div class="card-header">
+              <i class="fa-solid fa-images"></i>
+              <h3>Billedgalleri & Foto Upload (Multi)</h3>
+            </div>
+            <div class="input-field">
+              <label>Upload Flere Billeder / Fotos ad gangen</label>
+              <div class="upload-dropzone" id="multiDropzone">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <span>Træk & slip <strong>flere fotos her</strong>, eller klik for at vælge samling</span>
+                <input type="file" id="inputMultipleImages" accept="image/*" multiple class="file-input-hidden">
+              </div>
+              <button id="btnAiFetchImages" class="btn-sparkle" style="width:100%; margin-top:8px;">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <span>✨ Generér AI Fotos Til Branchen</span>
+              </button>
+            </div>
+
+            <!-- UPLOADED GALLERY THUMBNAIL GRID -->
+            <div class="input-field">
+              <label>Dine Uploadede Fotos (<span id="uploadedCount">0</span> fotos)</label>
+              <div class="uploaded-gallery-grid" id="uploadedGalleryGrid">
+                <div class="empty-gallery-msg" id="emptyGalleryMsg">
+                  <span>Ingen uploaded billeder endnu. Brug feltet ovenfor til at uploade din samling.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="input-field">
+              <label>Eksisterende Billede Presets</label>
+              <div class="stock-preset-grid" id="stockPresetGrid">
+                <button class="stock-thumb active" data-img="assets/hero_abstract_3d.jpg"><img src="assets/hero_abstract_3d.jpg" alt="3D Visual"></button>
+                <button class="stock-thumb" data-img="assets/emerald_tech_hero.jpg"><img src="assets/emerald_tech_hero.jpg" alt="Emerald Tech"></button>
+                <button class="stock-thumb" data-img="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=150&q=80" alt="Kontor Tech"></button>
+                <button class="stock-thumb" data-img="https://images.unsplash.com/photo-1541888946425-d0fbb186a5b2?auto=format&fit=crop&w=800&q=80"><img src="https://images.unsplash.com/photo-1541888946425-d0fbb186a5b2?auto=format&fit=crop&w=150&q=80" alt="Byg & Håndværk"></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- GROUP 3: KUNDENS EGNE TEKSTER & INDHOLD -->
+          <div class="control-card highlight-card-blue">
+            <div class="card-header">
+              <i class="fa-solid fa-pen-to-square"></i>
+              <h3>Skriv Dine Egne Tekster</h3>
+            </div>
+            <div class="input-field">
+              <label for="inputHeroTitle">Hovedoverskrift (Hero Title)</label>
+              <input type="text" id="inputHeroTitle" value="Skab resultater med din virksomhed" placeholder="F.eks. Renovering & entreprise i hele Danmark">
+            </div>
+            <div class="input-field">
+              <label for="inputHeroDesc">Underoverskrift & Beskrivelse</label>
+              <textarea id="inputHeroDesc" rows="3" style="background:rgba(15,23,42,0.8); border:1px solid var(--border-color); color:white; padding:8px; border-radius:8px; font-size:0.82rem; font-family:inherit;">Vi leverer skræddersyede løsninger, der forvandler din vision til virkelighed. Oplev lynhurtig performance og kompromisløs kvalitet.</textarea>
+            </div>
+            <div class="input-field">
+              <label for="inputHeroImgTitle">Billede Overskrift (Tekst henover Billede)</label>
+              <input type="text" id="inputHeroImgTitle" placeholder="F.eks. Murerfirmaet Jensen">
+            </div>
+            <div class="input-field">
+              <label for="inputHeroImgDesc">Billede Underoverskrift (Tekst henover Billede)</label>
+              <input type="text" id="inputHeroImgDesc" placeholder="F.eks. Professionelle løsninger og kvalitetsarbejde">
+            </div>
+            <div class="input-field">
+              <label for="inputCtaText">Knap Tekst (Call-to-Action)</label>
+              <input type="text" id="inputCtaText" value="Få et Uforpligtende Tilbud" placeholder="F.eks. Bestil Tid / Ring Nu">
+            </div>
+            <div class="input-field">
+              <label for="inputAboutText">Om Os / Firma Beskrivelse</label>
+              <textarea id="inputAboutText" rows="3" style="background:rgba(15,23,42,0.8); border:1px solid var(--border-color); color:white; padding:8px; border-radius:8px; font-size:0.82rem; font-family:inherit;">Vi udfører professionelt arbejde med stor stolthed og dedikation. Vores mål er altid 100% tilfredse kunder og kvalitetsløsninger der holder.</textarea>
+            </div>
+            <div class="input-field">
+              <label for="inputContactPhone">Telefonnummer</label>
+              <input type="text" id="inputContactPhone" value="+45 29 80 07 93" placeholder="F.eks. +45 12 34 56 78">
+            </div>
+            <div class="input-field">
+              <label for="inputContactEmail">E-mailadresse</label>
+              <input type="email" id="inputContactEmail" value="kontakt@aura-studio.dk" placeholder="kontakt@dinedomaene.dk">
+            </div>
+            <p class="subtext-info"><i class="fa-solid fa-hand-pointer"></i> <strong>Tip:</strong> Du kan også klikke direkte på enhver tekst inde i live-previewet for at redigere den!</p>
+          </div>
+
+          <!-- GROUP 4: TEMATISKE PRESETS (16 PALETTER) -->
+          <div class="control-card">
+            <div class="card-header">
+              <i class="fa-solid fa-palette"></i>
+              <h3>Farvepaletter (16 Presets)</h3>
+            </div>
+            <div class="preset-chips">
+              <button class="chip active" data-preset="cyberpunk">💜 Cyber Neon</button>
+              <button class="chip" data-preset="emerald">💚 Emerald Luxe</button>
+              <button class="chip" data-preset="sunset">🌅 Sunset Coral</button>
+              <button class="chip" data-preset="oceanic">💙 Oceanic Breeze</button>
+              <button class="chip" data-preset="minimal">🖤 Minimal Slate</button>
+              <button class="chip" data-preset="nordic">❄️ Nordic Clean</button>
+              <button class="chip" data-preset="executive">💛 Gold Executive</button>
+              <button class="chip" data-preset="neonpink">💖 Electric Pink</button>
+              <button class="chip" data-preset="bordeaux">🍷 Bordeaux Luxe</button>
+              <button class="chip" data-preset="sage">🍃 Eco Sage</button>
+              <button class="chip" data-preset="cosmic">🌌 Cosmic Nebula</button>
+              <button class="chip" data-preset="mocha">☕ Warm Mocha</button>
+              <button class="chip" data-preset="arctic">🧊 Arctic Ice</button>
+              <button class="chip" data-preset="tangerine">🍊 Tangerine Burst</button>
+              <button class="chip" data-preset="monochrome">🖤 Monochrome</button>
+              <button class="chip" data-preset="grape">🍇 Grape Velvet</button>
+            </div>
+          </div>
+
+          <!-- GROUP 5: HURTIGE ACCENT FARVE SWATCHES -->
+          <div class="control-card">
+            <div class="card-header">
+              <i class="fa-solid fa-circle-half-stroke"></i>
+              <h3>Hurtige Accentfarver</h3>
+            </div>
+            <div class="color-swatches" id="accentSwatches">
+              <button class="swatch" style="background:#7c3aed;" data-color="#7c3aed" title="Purple"></button>
+              <button class="swatch" style="background:#ec4899;" data-color="#ec4899" title="Pink"></button>
+              <button class="swatch" style="background:#ef4444;" data-color="#ef4444" title="Red"></button>
+              <button class="swatch" style="background:#f97316;" data-color="#f97316" title="Orange"></button>
+              <button class="swatch" style="background:#eab308;" data-color="#eab308" title="Yellow"></button>
+              <button class="swatch" style="background:#10b981;" data-color="#10b981" title="Emerald"></button>
+              <button class="swatch" style="background:#06b6d4;" data-color="#06b6d4" title="Cyan"></button>
+              <button class="swatch" style="background:#3b82f6;" data-color="#3b82f6" title="Blue"></button>
+              <button class="swatch" style="background:#6366f1;" data-color="#6366f1" title="Indigo"></button>
+              <button class="swatch" style="background:#a855f7;" data-color="#a855f7" title="Violet"></button>
+              <button class="swatch" style="background:#64748b;" data-color="#64748b" title="Slate"></button>
+              <button class="swatch" style="background:#d97706;" data-color="#d97706" title="Gold"></button>
+            </div>
+          </div>
+
+          <!-- GROUP 6: SKÆRMTEMA (LYSE & GLADE FARVER) -->
+          <div class="control-card">
+            <div class="card-header">
+              <i class="fa-solid fa-sun"></i>
+              <h3>Baggrund & Tema Mode (Lyse & Glade Farver)</h3>
+            </div>
+            <div class="theme-mode-chips" id="bgThemeControl">
+              <button class="theme-chip active" data-bgmode="light">☀️ Light Studio</button>
+              <button class="theme-chip" data-bgmode="blush">🌸 Blush Pastel</button>
+              <button class="theme-chip" data-bgmode="cream">🍦 Cream Gold</button>
+              <button class="theme-chip" data-bgmode="skyblue">🩵 Sky Cyan</button>
+              <button class="theme-chip" data-bgmode="mint">🍃 Fresh Mint</button>
+              <button class="theme-chip" data-bgmode="lavender">🪻 Lavender Soft</button>
+              <button class="theme-chip" data-bgmode="peach">🍊 Peach Glow</button>
+              <button class="theme-chip" data-bgmode="gradient">🌈 Light Aurora</button>
+              <button class="theme-chip" data-bgmode="dark">🌙 Dark Slate</button>
+              <button class="theme-chip" data-bgmode="oled">🌃 OLED Black</button>
+            </div>
+          </div>
+
+          <!-- GROUP 7: LOGO & FIRMANAVN -->
+          <div class="control-card">
+            <div class="card-header">
+              <i class="fa-solid fa-cubes"></i>
+              <h3>Logo & Brand</h3>
+            </div>
+            <div class="input-field">
+              <label for="inputBrandName">Firmanavn / Brand Name</label>
+              <input type="text" id="inputBrandName" value="Aura Studio" placeholder="F.eks. OC Entreprise">
+            </div>
+            <div class="input-field">
+              <label for="inputTagline">Slogan / Tagline</label>
+              <input type="text" id="inputTagline" value="Fremtidens digitale løsninger" placeholder="Kvalitet & håndværk i top">
+            </div>
+            <div class="input-field">
+              <label>Logo Ikon Style</label>
+              <div class="icon-selector" id="logoIconSelector">
+                <button class="icon-option active" data-icon="fa-rocket"><i class="fa-solid fa-rocket"></i></button>
+                <button class="icon-option" data-icon="fa-crown"><i class="fa-solid fa-crown"></i></button>
+                <button class="icon-option" data-icon="fa-shield-halved"><i class="fa-solid fa-shield-halved"></i></button>
+                <button class="icon-option" data-icon="fa-leaf"><i class="fa-solid fa-leaf"></i></button>
+                <button class="icon-option" data-icon="fa-sparkles"><i class="fa-solid fa-sparkles"></i></button>
+                <button class="icon-option" data-icon="fa-code"><i class="fa-solid fa-code"></i></button>
+                <button class="icon-option" data-icon="fa-gem"><i class="fa-solid fa-gem"></i></button>
+                <button class="icon-option" data-icon="fa-compass"><i class="fa-solid fa-compass"></i></button>
+                <button class="icon-option" data-icon="fa-hammer"><i class="fa-solid fa-hammer"></i></button>
+                <button class="icon-option" data-icon="fa-laptop-code"><i class="fa-solid fa-laptop-code"></i></button>
+                <button class="icon-option" data-icon="fa-bolt"><i class="fa-solid fa-bolt"></i></button>
+                <button class="icon-option" data-icon="fa-chart-line"><i class="fa-solid fa-chart-line"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- GROUP 8: MANUEL FARVEJUSTERING -->
+          <div class="control-card">
+            <div class="card-header">
+              <i class="fa-solid fa-droplet"></i>
+              <h3>Manuel Farvejustering</h3>
+            </div>
+            <div class="color-pickers-grid">
+              <div class="color-picker-item">
+                <label>Primær Farve</label>
+                <div class="color-input-wrapper">
+                  <input type="color" id="colorPrimary" value="#7c3aed">
+                  <span class="color-hex" id="hexPrimary">#7c3aed</span>
+                </div>
+              </div>
+              <div class="color-picker-item">
+                <label>Sekundær Farve</label>
+                <div class="color-input-wrapper">
+                  <input type="color" id="colorSecondary" value="#06b6d4">
+                  <span class="color-hex" id="hexSecondary">#06b6d4</span>
+                </div>
+              </div>
+              <div class="color-picker-item">
+                <label>Baggrund</label>
+                <div class="color-input-wrapper">
+                  <input type="color" id="colorBg" value="#0f172a">
+                  <span class="color-hex" id="hexBg">#0f172a</span>
+                </div>
+              </div>
+              <div class="color-picker-item">
+                <label>Tekstfarve</label>
+                <div class="color-input-wrapper">
+                  <input type="color" id="colorText" value="#f8fafc">
+                  <span class="color-hex" id="hexText">#f8fafc</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- GROUP 9: SKRIFTTYPER (TYPOGRAPHY) -->
+          <div class="control-card">
+            <div class="card-header">
+              <i class="fa-solid fa-font"></i>
+              <h3>Skrifttyper & Typografi</h3>
+            </div>
+            <div class="input-field">
+              <label for="selectFontPair">Font Parring</label>
+              <select id="selectFontPair">
+                <option value="outfit-inter">Outfit + Inter (Moderne Tech)</option>
+                <option value="playfair-jakarta">Playfair Display + Plus Jakarta (Elegent Luksus)</option>
+                <option value="space-roboto">Space Grotesk + Inter (Futuristisk Design)</option>
+                <option value="syne-archivo">Syne + Inter (Kreativt Bureau)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- GROUP 10: KNAPPER & FORM -->
+          <div class="control-card">
+            <div class="card-header">
+              <i class="fa-solid fa-toggle-on"></i>
+              <h3>Knapper & Interaktion</h3>
+            </div>
+            <div class="input-field">
+              <label>Knap Shape</label>
+              <div class="segmented-control" id="buttonShapeControl">
+                <button class="segment active" data-shape="pill">Pill (Afrundet)</button>
+                <button class="segment" data-shape="rounded">Soft Corner</button>
+                <button class="segment" data-shape="sharp">Sharp (Kantet)</button>
+              </div>
+            </div>
+            <div class="input-field">
+              <label>Knap Effekt Style</label>
+              <div class="segmented-control" id="buttonEffectControl">
+                <button class="segment active" data-effect="glow">Neon Glow</button>
+                <button class="segment" data-effect="glass">Glassmorphism</button>
+                <button class="segment" data-effect="solid">Solid Modern</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- GROUP 11: NAVIGATION & HERO DETAIL -->
+          <div class="control-card">
+            <div class="card-header">
+              <i class="fa-solid fa-bars-staggered"></i>
+              <h3>Navigation & Hero Detaljer</h3>
+            </div>
+            <div class="input-field">
+              <label for="selectNavStyle">Navigationsbar Style</label>
+              <select id="selectNavStyle">
+                <option value="glass-sticky">Glassmorphic Sticky Header</option>
+                <option value="floating-island">Floating Island Navbar</option>
+                <option value="minimal-clean">Minimal Borderless</option>
+              </select>
+            </div>
+            <div class="input-field">
+              <label for="selectHeroLayout">Hero Visual Variant</label>
+              <select id="selectHeroLayout">
+                <option value="split-image">Left Text + Right 3D Visual</option>
+                <option value="centered-impact">Centered Big Impact + Badge</option>
+                <option value="overlay-bg">Full Screen Background Overlay</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- GROUP 11B: BETALING, MOBILEPAY & ONLINE BOOKING -->
+          <div class="control-card highlight-card-blue">
+            <div class="card-header">
+              <i class="fa-solid fa-credit-card"></i>
+              <h3>Betaling, MobilePay & Booking</h3>
+            </div>
+            <div class="input-field">
+              <label for="inputMobilePay">MobilePay MyShop Nr. / Link</label>
+              <input type="text" id="inputMobilePay" value="88888" placeholder="F.eks. 123456 eller https://mobilepay.dk/...">
+            </div>
+            <div class="input-field">
+              <label for="inputStripeLink">Stripe Payment Link / Kortbetaling URL</label>
+              <input type="text" id="inputStripeLink" value="https://buy.stripe.com/demo" placeholder="F.eks. https://buy.stripe.com/...">
+            </div>
+            <div class="input-field">
+              <label for="inputBookingLink">Online Booking Portal URL</label>
+              <input type="text" id="inputBookingLink" value="https://calendly.com" placeholder="F.eks. Planway, EasyPractice, Calendly">
+            </div>
+          </div>
+
+          <!-- GROUP 12: SEKTIONER (INDHOLD & JUMP TO SECTION) -->
+          <div class="control-card">
+            <div class="card-header">
+              <i class="fa-solid fa-layer-group"></i>
+              <h3>Synlige Sektioner (Slå til/fra)</h3>
+            </div>
+            <div class="checkbox-group">
+              <div class="section-row">
+                <label class="custom-checkbox">
+                  <input type="checkbox" id="chkPayment" checked>
+                  <span class="checkmark"></span>
+                  <span>💳 Betaling, MobilePay & Booking</span>
+                </label>
+                <button class="btn-jump-section" data-target="betaling" title="Hop til sektion"><i class="fa-solid fa-eye"></i> Vis</button>
+              </div>
+
+              <div class="section-row">
+                <label class="custom-checkbox">
+                  <input type="checkbox" id="chkFeatures" checked>
+                  <span class="checkmark"></span>
+                  <span>Features / Ydelser Cards</span>
+                </label>
+                <button class="btn-jump-section" data-target="features" title="Hop til sektion"><i class="fa-solid fa-eye"></i> Vis</button>
+              </div>
+
+              <div class="section-row">
+                <label class="custom-checkbox">
+                  <input type="checkbox" id="chkShowcase" checked>
+                  <span class="checkmark"></span>
+                  <span>Portfolio / Billedgalleri</span>
+                </label>
+                <button class="btn-jump-section" data-target="portfolio" title="Hop til sektion"><i class="fa-solid fa-eye"></i> Vis</button>
+              </div>
+
+              <div class="section-row">
+                <label class="custom-checkbox">
+                  <input type="checkbox" id="chkPricing" checked>
+                  <span class="checkmark"></span>
+                  <span>Prisoversigt / Pakker</span>
+                </label>
+                <button class="btn-jump-section" data-target="pricing" title="Hop til sektion"><i class="fa-solid fa-eye"></i> Vis</button>
+              </div>
+
+              <div class="section-row">
+                <label class="custom-checkbox">
+                  <input type="checkbox" id="chkTestimonials" checked>
+                  <span class="checkmark"></span>
+                  <span>Kunde Udtalelser</span>
+                </label>
+                <button class="btn-jump-section" data-target="testimonials" title="Hop til sektion"><i class="fa-solid fa-eye"></i> Vis</button>
+              </div>
+
+              <div class="section-row">
+                <label class="custom-checkbox">
+                  <input type="checkbox" id="chkFaq" checked>
+                  <span class="checkmark"></span>
+                  <span>FAQ (Spørgsmål)</span>
+                </label>
+                <button class="btn-jump-section" data-target="faq" title="Hop til sektion"><i class="fa-solid fa-eye"></i> Vis</button>
+              </div>
+
+              <div class="section-row">
+                <label class="custom-checkbox">
+                  <input type="checkbox" id="chkContact" checked>
+                  <span class="checkmark"></span>
+                  <span>Kontaktformular & Footer</span>
+                </label>
+                <button class="btn-jump-section" data-target="contact" title="Hop til sektion"><i class="fa-solid fa-eye"></i> Vis</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </aside>
+
+      <!-- RIGHT MAIN AREA: LIVE CANVAS PREVIEW -->
+      <main class="studio-canvas">
+        
+        <!-- DEVICE CONTAINER FRAME -->
+        <div class="device-frame desktop-view" id="deviceFrame">
+          
+          <div class="device-header">
+            <div class="dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="device-url-bar">
+              <i class="fa-solid fa-lock"></i>
+              <span id="previewUrl">https://aura-studio.dk</span>
+            </div>
+            <div class="device-badge">
+              <span id="viewportLabel">Skrivebord (100%)</span>
+            </div>
+          </div>
+
+          <!-- MULTI-PAGE SUBPAGE TAB SWITCHER BAR -->
+          <div class="subpage-tabs-bar" id="subpageTabsBar">
+            <span class="tab-label"><i class="fa-solid fa-copy"></i> Vis Underside:</span>
+            <button class="subpage-tab active" data-page="index"><i class="fa-solid fa-house"></i> Forside (Hovedside)</button>
+            <button class="subpage-tab" data-page="about"><i class="fa-solid fa-circle-info"></i> Om Os</button>
+            <button class="subpage-tab" data-page="services"><i class="fa-solid fa-screwdriver-wrench"></i> Ydelser</button>
+            <button class="subpage-tab" data-page="pricing"><i class="fa-solid fa-tags"></i> Priser</button>
+            <button class="subpage-tab" data-page="contact"><i class="fa-solid fa-envelope"></i> Kontakt</button>
+          </div>
+
+          <!-- GENERATED WEBSITE LIVE PREVIEW IFRAME / CONTAINER -->
+          <div class="preview-viewport" id="previewViewport">
+            <!-- DYNAMIC GENERATED SITE INJECTED HERE VIA JS -->
+          </div>
+
+        </div>
+
+      </main>
+
+    </div>
+
+  </div>
+
+  <!-- CHECKOUT & DOWNLOAD MODAL -->
+  <dialog id="modalCheckout" class="studio-dialog">
+    <div class="dialog-content checkout-content">
+      <div class="dialog-header">
+        <h3><i class="fa-solid fa-shield-halved"></i> Sikker Betaling & Hent Hjemmeside</h3>
+        <button class="close-dialog" id="btnCloseCheckout"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- FORM STEP 1: ORDER & PAYMENT -->
+      <div id="checkoutStepOrder" class="checkout-body">
+        
+        <div class="order-summary-box">
+          <div class="summary-header">
+            <h4>Ordreoversigt</h4>
+            <span class="price-tag">299 DKK <small>(inkl. moms)</small></span>
+          </div>
+          <ul class="summary-features">
+            <li><i class="fa-solid fa-check"></i> Complete Kildekode (HTML5 & CSS3)</li>
+            <li><i class="fa-solid fa-check"></i> Alle uploadede højopløselige billeder</li>
+            <li><i class="fa-solid fa-check"></i> 100% Responsiv (Mobil, Tablet, PC)</li>
+            <li><i class="fa-solid fa-check"></i> Ingen løbende abonnementer – Evig Licens</li>
+          </ul>
+        </div>
+
+        <div class="payment-tabs">
+          <button class="pay-tab active" data-paymethod="card">
+            <i class="fa-solid fa-credit-card"></i> Dankort / Kreditkort
+          </button>
+          <button class="pay-tab" data-paymethod="mobilepay">
+            <i class="fa-solid fa-mobile"></i> MobilePay
+          </button>
+        </div>
+
+        <form id="formCheckout" onsubmit="return false;">
+          <!-- CARD INPUTS -->
+          <div id="payFormCard" class="pay-form-group">
+            <div class="input-field">
+              <label>Kortnummer</label>
+              <input type="text" id="payCardNumber" value="4571 •••• •••• 8492" required>
+            </div>
+            <div class="form-row-2">
+              <div class="input-field">
+                <label>Udløb (MM/ÅÅ)</label>
+                <input type="text" id="payCardExpiry" value="08/28" required>
+              </div>
+              <div class="input-field">
+                <label>CVC / CWW</label>
+                <input type="text" id="payCardCvc" value="849" required>
+              </div>
+            </div>
+          </div>
+
+          <!-- MOBILEPAY INPUTS -->
+          <div id="payFormMobilePay" class="pay-form-group hidden">
+            <div class="input-field">
+              <label>Mobilnummer (MobilePay)</label>
+              <input type="text" id="payMobileNumber" value="+45 88 88 88 88" placeholder="8-cifret nummer">
+            </div>
+            <p class="subtext-info"><i class="fa-solid fa-circle-info"></i> Du modtager en 1-klik godkendelse i din MobilePay App.</p>
+          </div>
+
+          <div class="input-field">
+            <label>E-mailadresse til kvittering</label>
+            <input type="email" id="payEmail" value="hp@ocentreprise.dk" required>
+          </div>
+
+          <button id="btnSubmitPayment" class="btn-pay-submit">
+            <i class="fa-solid fa-lock"></i> Gennemfør Betaling (299 DKK)
+          </button>
+        </form>
+
+      </div>
+
+      <!-- FORM STEP 2: PAYMENT SUCCESS & DOWNLOAD -->
+      <div id="checkoutStepSuccess" class="checkout-body hidden">
+        <div class="success-banner">
+          <div class="check-icon"><i class="fa-solid fa-circle-check"></i></div>
+          <h2>Betaling Gennemført!</h2>
+          <p>Ordrenummer: <strong id="receiptId">#VELOCE-84920</strong></p>
+          <span class="subtext">En kvittering er sendt til din e-mail. Din hjemmeside er klar til download.</span>
+        </div>
+
+        <div class="download-options-grid">
+          <button id="btnDownloadZip" class="btn-download-big">
+            <i class="fa-solid fa-file-zipper"></i>
+            <div class="btn-text-group">
+              <strong>Download Komplet ZIP Pakke</strong>
+              <span>Indholder index.html, styles.css og alle billeder</span>
+            </div>
+          </button>
+
+          <button id="btnDownloadSingleHtml" class="btn-download-outline">
+            <i class="fa-solid fa-file-code"></i>
+            <div class="btn-text-group">
+              <strong>Download Enkelt index.html</strong>
+              <span>Stand-alone HTML med indlejret CSS</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </dialog>
+
+  <!-- GENERATING SPARKLE LOADER OVERLAY -->
+  <div id="loaderOverlay" class="loader-overlay hidden">
+    <div class="loader-content">
+      <div class="magic-orb">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+      </div>
+      <h2 id="loaderTitle">AI Veloce Genererer Hjemmeside...</h2>
+      <p id="loaderStatusText">Syntetiserer farver, typografi og 3D layout...</p>
+      <div class="loader-progress-bar">
+        <div class="loader-progress-fill" id="loaderFill"></div>
+      </div>
+                </label>
+                <button class="btn-jump-section" data-target="pricing" title="Hop til sektion"><i class="fa-solid fa-eye"></i> Vis</button>
+              </div>
+
+              <div class="section-row">
+                <label class="custom-checkbox">
+                  <input type="checkbox" id="chkTestimonials" checked>
+                  <span class="checkmark"></span>
+                  <span>Kunde Udtalelser</span>
+                </label>
+                <button class="btn-jump-section" data-target="testimonials" title="Hop til sektion"><i class="fa-solid fa-eye"></i> Vis</button>
+              </div>
+
+              <div class="section-row">
+                <label class="custom-checkbox">
+                  <input type="checkbox" id="chkFaq" checked>
+                  <span class="checkmark"></span>
+                  <span>FAQ (Spørgsmål)</span>
+                </label>
+                <button class="btn-jump-section" data-target="faq" title="Hop til sektion"><i class="fa-solid fa-eye"></i> Vis</button>
+              </div>
+
+              <div class="section-row">
+                <label class="custom-checkbox">
+                  <input type="checkbox" id="chkContact" checked>
+                  <span class="checkmark"></span>
+                  <span>Kontaktformular & Footer</span>
+                </label>
+                <button class="btn-jump-section" data-target="contact" title="Hop til sektion"><i class="fa-solid fa-eye"></i> Vis</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </aside>
+
+      <!-- RIGHT MAIN AREA: LIVE CANVAS PREVIEW -->
+      <main class="studio-canvas">
+        
+        <!-- DEVICE CONTAINER FRAME -->
+        <div class="device-frame desktop-view" id="deviceFrame">
+          
+          <div class="device-header">
+            <div class="dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="device-url-bar">
+              <i class="fa-solid fa-lock"></i>
+              <span id="previewUrl">https://aura-studio.dk</span>
+            </div>
+            <div class="device-badge">
+              <span id="viewportLabel">Skrivebord (100%)</span>
+            </div>
+          </div>
+
+          <!-- MULTI-PAGE SUBPAGE TAB SWITCHER BAR -->
+          <div class="subpage-tabs-bar" id="subpageTabsBar">
+            <span class="tab-label"><i class="fa-solid fa-copy"></i> Vis Underside:</span>
+            <button class="subpage-tab active" data-page="index"><i class="fa-solid fa-house"></i> Forside (Hovedside)</button>
+            <button class="subpage-tab" data-page="about"><i class="fa-solid fa-circle-info"></i> Om Os</button>
+            <button class="subpage-tab" data-page="services"><i class="fa-solid fa-screwdriver-wrench"></i> Ydelser</button>
+            <button class="subpage-tab" data-page="pricing"><i class="fa-solid fa-tags"></i> Priser</button>
+            <button class="subpage-tab" data-page="contact"><i class="fa-solid fa-envelope"></i> Kontakt</button>
+          </div>
+
+          <!-- GENERATED WEBSITE LIVE PREVIEW IFRAME / CONTAINER -->
+          <div class="preview-viewport" id="previewViewport">
+            <!-- DYNAMIC GENERATED SITE INJECTED HERE VIA JS -->
+          </div>
+
+        </div>
+
+      </main>
+
+    </div>
+
+  </div>
+
+  <!-- CHECKOUT & DOWNLOAD MODAL -->
+  <dialog id="modalCheckout" class="studio-dialog">
+    <div class="dialog-content checkout-content">
+      <div class="dialog-header">
+        <h3><i class="fa-solid fa-shield-halved"></i> Sikker Betaling & Hent Hjemmeside</h3>
+        <button class="close-dialog" id="btnCloseCheckout"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- FORM STEP 1: ORDER & PAYMENT -->
+      <div id="checkoutStepOrder" class="checkout-body">
+        
+        <div class="order-summary-box">
+          <div class="summary-header">
+            <h4>Ordreoversigt</h4>
+            <span class="price-tag">299 DKK <small>(inkl. moms)</small></span>
+          </div>
+          <ul class="summary-features">
+            <li><i class="fa-solid fa-check"></i> Complete Kildekode (HTML5 & CSS3)</li>
+            <li><i class="fa-solid fa-check"></i> Alle uploadede højopløselige billeder</li>
+            <li><i class="fa-solid fa-check"></i> 100% Responsiv (Mobil, Tablet, PC)</li>
+            <li><i class="fa-solid fa-check"></i> Ingen løbende abonnementer – Evig Licens</li>
+          </ul>
+        </div>
+
+        <div class="payment-tabs">
+          <button class="pay-tab active" data-paymethod="card">
+            <i class="fa-solid fa-credit-card"></i> Dankort / Kreditkort
+          </button>
+          <button class="pay-tab" data-paymethod="mobilepay">
+            <i class="fa-solid fa-mobile"></i> MobilePay
+          </button>
+        </div>
+
+        <form id="formCheckout" onsubmit="return false;">
+          <!-- CARD INPUTS -->
+          <div id="payFormCard" class="pay-form-group">
+            <div class="input-field">
+              <label>Kortnummer</label>
+              <input type="text" id="payCardNumber" value="4571 •••• •••• 8492" required>
+            </div>
+            <div class="form-row-2">
+              <div class="input-field">
+                <label>Udløb (MM/ÅÅ)</label>
+                <input type="text" id="payCardExpiry" value="08/28" required>
+              </div>
+              <div class="input-field">
+                <label>CVC / CWW</label>
+                <input type="text" id="payCardCvc" value="849" required>
+              </div>
+            </div>
+          </div>
+
+          <!-- MOBILEPAY INPUTS -->
+          <div id="payFormMobilePay" class="pay-form-group hidden">
+            <div class="input-field">
+              <label>Mobilnummer (MobilePay)</label>
+              <input type="text" id="payMobileNumber" value="+45 88 88 88 88" placeholder="8-cifret nummer">
+            </div>
+            <p class="subtext-info"><i class="fa-solid fa-circle-info"></i> Du modtager en 1-klik godkendelse i din MobilePay App.</p>
+          </div>
+
+          <div class="input-field">
+            <label>E-mailadresse til kvittering</label>
+            <input type="email" id="payEmail" value="hp@ocentreprise.dk" required>
+          </div>
+
+          <button id="btnSubmitPayment" class="btn-pay-submit">
+            <i class="fa-solid fa-lock"></i> Gennemfør Betaling (299 DKK)
+          </button>
+        </form>
+
+      </div>
+
+      <!-- FORM STEP 2: PAYMENT SUCCESS & DOWNLOAD -->
+      <div id="checkoutStepSuccess" class="checkout-body hidden">
+        <div class="success-banner">
+          <div class="check-icon"><i class="fa-solid fa-circle-check"></i></div>
+          <h2>Betaling Gennemført!</h2>
+          <p>Ordrenummer: <strong id="receiptId">#VELOCE-84920</strong></p>
+          <span class="subtext">En kvittering er sendt til din e-mail. Din hjemmeside er klar til download.</span>
+        </div>
+
+        <div class="download-options-grid">
+          <button id="btnDownloadZip" class="btn-download-big">
+            <i class="fa-solid fa-file-zipper"></i>
+            <div class="btn-text-group">
+              <strong>Download Komplet ZIP Pakke</strong>
+              <span>Indholder index.html, styles.css og alle billeder</span>
+            </div>
+          </button>
+
+          <button id="btnDownloadSingleHtml" class="btn-download-outline">
+            <i class="fa-solid fa-file-code"></i>
+            <div class="btn-text-group">
+              <strong>Download Enkelt index.html</strong>
+              <span>Stand-alone HTML med indlejret CSS</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </dialog>
+
+  <!-- GENERATING SPARKLE LOADER OVERLAY -->
+  <div id="loaderOverlay" class="loader-overlay hidden">
+    <div class="loader-content">
+      <div class="magic-orb">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+      </div>
+      <h2 id="loaderTitle">AI Veloce Genererer Hjemmeside...</h2>
+      <p id="loaderStatusText">Syntetiserer farver, typografi og 3D layout...</p>
+      <div class="loader-progress-bar">
+        <div class="loader-progress-fill" id="loaderFill"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js?v=20260811_1555"></script>
+
+  <!-- TEMPLATE SELECTION MODAL (15 SKABELONER 3x5 GRID) -->
+  <dialog id="templateModal" class="studio-dialog template-modal-dialog">
+    <div class="dialog-content template-modal-content">
+      <div class="dialog-header">
+        <h3><i class="fa-solid fa-table-cells-large"></i> Vælg Hjemmeside Skabelon (15 Visuelle Layouts)</h3>
+        <button id="btnCloseTemplateModal" class="close-dialog" type="button"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <p class="subtext-info" style="font-size:0.9rem; color:var(--text-muted);">Vælg blandt vores 15 professionelle skabelon-layouter. Hver skabelon ændrer sideopbygningen, overskriftsstilen og sektionsstrukturen i realtid.</p>
+      <div class="modal-template-grid" id="modalTemplateGrid"></div>
+      <div class="dialog-footer">
+        <button id="btnCloseTemplateModalFooter" class="btn-secondary" type="button">Luk</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- BRUGERVEJLEDNING MODAL POP-UP (BULLETPROOF OVERLAY FOR MOBILE & DESKTOP) -->
+  <div id="guideModal" class="custom-modal-overlay hidden">
+    <div class="custom-modal-box">
+      
+      <div class="custom-modal-header">
+        <h2 style="font-size:1.3rem; font-weight:800; display:flex; align-items:center; gap:10px; color:#ef4444; margin:0;">
+          <i class="fa-solid fa-circle-question" style="font-size:1.5rem;"></i> Sådan bruger du Veloce Studio
+        </h2>
+        <button id="btnCloseGuideModal" class="close-dialog" type="button" style="background:rgba(255,255,255,0.08); border:none; color:inherit; width:36px; height:36px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1.2rem;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="custom-modal-body">
+        <div class="guide-steps-list" style="display:flex; flex-direction:column; gap:14px;">
+          
+          <!-- TRIN 1 -->
+          <div style="display:flex; gap:14px; align-items:flex-start; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:14px 16px; border-radius:16px;">
+            <div style="background:#ef4444; color:white; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1rem; flex-shrink:0;">1</div>
+            <div>
+              <h3 style="font-size:1rem; font-weight:700; margin-bottom:4px; color:white;">Vælg dit erhverv / din branche</h3>
+              <p style="font-size:0.86rem; opacity:0.9; line-height:1.45; margin:0;">Start med at vælge dit fag i den lilla boks øverst til venstre (f.eks. Murer, Tømrer, Frisør eller Rengøring). Skriv gerne dit bynavn i feltet ved siden af.</p>
+            </div>
+          </div>
+
+          <!-- TRIN 2 -->
+          <div style="display:flex; gap:14px; align-items:flex-start; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:14px 16px; border-radius:16px;">
+            <div style="background:#ef4444; color:white; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1rem; flex-shrink:0;">2</div>
+            <div>
+              <h3 style="font-size:1rem; font-weight:700; margin-bottom:4px; color:white;">Tryk på den magiske knap</h3>
+              <p style="font-size:0.86rem; opacity:0.9; line-height:1.45; margin:0;">Tryk på knappen <strong>"✨ AI SKRIV MIN HJEMMESIDE NU"</strong>. Systemet skriver nu automatisk professionelle overskrifter, tekster og lægger flotte billeder på din side.</p>
+            </div>
+          </div>
+
+          <!-- TRIN 3: DIREKTE TEKSTER OG BILLEDER -->
+          <div style="display:flex; gap:14px; align-items:flex-start; background:rgba(239, 68, 68, 0.08); border:1px solid rgba(239, 68, 68, 0.25); padding:14px 16px; border-radius:16px;">
+            <div style="background:#ef4444; color:white; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1rem; flex-shrink:0;">3</div>
+            <div>
+              <h3 style="font-size:1rem; font-weight:700; margin-bottom:4px; color:white;">Ret tekster & skift billeder direkte på skærmen</h3>
+              <p style="font-size:0.86rem; opacity:0.95; line-height:1.45; margin:0;">
+                ✍️ <strong>Tekster:</strong> Før musen hen over en hvilken som helst overskrift eller tekst på hjemmesiden til højre, klik og skriv din helt egen tekst med det samme.<br>
+                🖼️ <strong>Billeder:</strong> I menuen til venstre under punkt 4 (<em>Billeder & Fotos</em>) kan du nemt uploade dine egne billeder fra computeren eller telefonen, og de sættes automatisk på plads på din hjemmeside.
+              </p>
+            </div>
+          </div>
+
+          <!-- TRIN 4: BETALING & BOOKING -->
+          <div style="display:flex; gap:14px; align-items:flex-start; background:rgba(16, 185, 129, 0.08); border:1px solid rgba(16, 185, 129, 0.25); padding:14px 16px; border-radius:16px;">
+            <div style="background:#10b981; color:white; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1rem; flex-shrink:0;">4</div>
+            <div>
+              <h3 style="font-size:1rem; font-weight:700; margin-bottom:4px; color:white;">Tilknyt Betaling & Online Booking</h3>
+              <p style="font-size:0.86rem; opacity:0.95; line-height:1.45; margin:0;">
+                💳 <strong>MobilPay & Kort:</strong> I menuen til venstre under <em>"Betaling, MobilePay & Booking"</em> kan du skrive dit MobilePay-nummer eller indsætte et Stripe/Dankort-link.<br>
+                📅 <strong>Online Booking:</strong> Indsæt linket til dit kalendersystem (f.eks. Planway eller EasyPractice). Knapperne på hjemmesiden sender automatisk dine kunder direkte til betaling eller tidbestilling!
+              </p>
+            </div>
+          </div>
+
+          <!-- TRIN 5 -->
+          <div style="display:flex; gap:14px; align-items:flex-start; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:14px 16px; border-radius:16px;">
+            <div style="background:#ef4444; color:white; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1rem; flex-shrink:0;">5</div>
+            <div>
+              <h3 style="font-size:1rem; font-weight:700; margin-bottom:4px; color:white;">Vælg udseende & farver</h3>
+              <p style="font-size:0.86rem; opacity:0.9; line-height:1.45; margin:0;">I panelet til venstre kan du nemt ændre farver, skrifttyper og skabelon-layouts. Du ser alle ændringer med det samme på skærmen til højre.</p>
+            </div>
+          </div>
+
+          <!-- TRIN 6 -->
+          <div style="display:flex; gap:14px; align-items:flex-start; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:14px 16px; border-radius:16px;">
+            <div style="background:#ef4444; color:white; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1rem; flex-shrink:0;">6</div>
+            <div>
+              <h3 style="font-size:1rem; font-weight:700; margin-bottom:4px; color:white;">Se alle dine undersider</h3>
+              <p style="font-size:0.86rem; opacity:0.9; line-height:1.45; margin:0;">Ovenover preview-vinduet kan du klikke på fanebladene <strong>Forside, Om Os, Ydelser, Priser</strong> og <strong>Kontakt</strong> for at se alle dine 5 færdige undersider.</p>
+            </div>
+          </div>
+
+          <!-- TRIN 7 -->
+          <div style="display:flex; gap:14px; align-items:flex-start; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); padding:14px 16px; border-radius:16px;">
+            <div style="background:#ef4444; color:white; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1rem; flex-shrink:0;">7</div>
+            <div>
+              <h3 style="font-size:1rem; font-weight:700; margin-bottom:4px; color:white;">Køb og Hent din færdige hjemmeside</h3>
+              <p style="font-size:0.86rem; opacity:0.9; line-height:1.45; margin:0;">Når du er helt tilfreds, trykker du på den grønne knap <strong>"Køb & Download (299 kr.)"</strong> øverst i højre hjørne. Du får straks alle 5 HTML-filer til din nye hjemmeside!</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="custom-modal-footer">
+        <button id="btnOkGuide" class="btn" style="background:#ef4444; color:white; border:none; padding:12px 32px; font-weight:800; border-radius:9999px; cursor:pointer; width:100%; justify-content:center; font-size:0.95rem;">
+          <i class="fa-solid fa-check"></i> Forstået — Luk Vejledning
+        </button>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
